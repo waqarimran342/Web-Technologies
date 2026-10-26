@@ -1,0 +1,29 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.placeholder-img {
+  background-color: #d9d9d9;
+  color: #777;
+  aspect-ratio: 4 / 3;          
+  display: flex;                
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 575px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+}
