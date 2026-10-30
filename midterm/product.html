@@ -73,15 +73,18 @@
 
       <!-- Box 2: details (name, price, quantity, Add to Cart). This is the sticky box. -->
       <div class="p-details">
-        <h1 class="h2">Oud Royale</h1>
-        <p class="fs-3 fw-bold">Rs. 3,000</p>
+        <!-- inner box = the part that sticks (so it stops at the end of the image row) -->
+        <div class="details-box">
+          <h1 class="h2">Oud Royale</h1>
+          <p class="fs-3 fw-bold">Rs. 3,000</p>
 
-        <div class="mb-3">
-          <label for="quantity" class="form-label fw-bold">Quantity</label>
-          <input type="number" id="quantity" class="form-control quantity-input" value="1" min="1" max="10">
+          <div class="mb-3">
+            <label for="quantity" class="form-label fw-bold">Quantity</label>
+            <input type="number" id="quantity" class="form-control quantity-input" value="1" min="1" max="10">
+          </div>
+
+          <button class="btn btn-dark btn-lg w-100">Add to Cart</button>
         </div>
-
-        <button class="btn btn-dark btn-lg w-100">Add to Cart</button>
       </div>
 
       <!-- Box 3: description (long text, full width underneath on wide screens) -->

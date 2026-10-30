@@ -134,6 +134,23 @@ body {
 }
 
 
+/* ---------- TASK 3: search and sort controls ---------- */
+.tools {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tools .form-control {
+  flex: 1;
+}
+
+/* script.js adds this class to cards that do not match the search text */
+.search-hide {
+  display: none;
+}
+
+
 /* ---------- TASK 2: product page grid with named areas ---------- */
 
 /* Phones (below BP): ONE column, three boxes stacked in this order */
@@ -164,14 +181,17 @@ body {
     grid-template-areas:
       "image details"
       "description description";              /* description spans both columns */
-    align-items: start;                       /* boxes keep their own height (sticky needs this) */
   }
 
   .p-image img {
-    aspect-ratio: 3 / 4;                      /* taller image = more room for the box to stay visible */
+    aspect-ratio: 3 / 4;                      /* taller image = taller row = more room for the box to move */
   }
 
-  .p-details {
+  /* .p-details is the grid column (as tall as the image row).
+     .details-box inside it is the box that sticks, so it can only move
+     inside that column and stops at the end of the image row,
+     instead of floating over the description. */
+  .details-box {
     position: sticky;
     top: 82px;                                /* (N mod 40) + 70 = 12 + 70 = 82px */
   }

@@ -64,6 +64,7 @@
 
   <main>
 
+    <!-- ========== HERO BANNER ========== -->
     <section class="hero text-center text-white d-flex align-items-center">
       <div class="container">
         <h1 class="display-5 fw-bold">Perfumes That Tell Your Story</h1>
@@ -81,18 +82,36 @@
            All 4 share name="category", so only one can be selected at a time.
            The radios and labels sit directly before the grid (same parent),
            so the CSS "~" selector can reach the cards. -->
-      <input type="radio" name="category" id="f-all" class="filter-radio" checked>
+      <input type="radio" name="category" id="f-all" value="all" class="filter-radio" checked>
       <label for="f-all" class="filter-label">All</label>
 
-      <input type="radio" name="category" id="f-men" class="filter-radio">
+      <input type="radio" name="category" id="f-men" value="men" class="filter-radio">
       <label for="f-men" class="filter-label">Men</label>
 
-      <input type="radio" name="category" id="f-women" class="filter-radio">
+      <input type="radio" name="category" id="f-women" value="women" class="filter-radio">
       <label for="f-women" class="filter-label">Women</label>
 
-      <input type="radio" name="category" id="f-unisex" class="filter-radio">
+      <input type="radio" name="category" id="f-unisex" value="unisex" class="filter-radio">
       <label for="f-unisex" class="filter-label">Unisex</label>
 
+      <!-- TASK 3: live search and sort button (script.js) -->
+      <div class="tools">
+        <input type="search" id="searchBox" class="form-control" placeholder="Search products..." aria-label="Search products">
+        <button type="button" id="sortBtn" class="btn btn-outline-dark">Sort by price</button>
+      </div>
+
+      <!-- TASK 3: shown by script.js when no card matches -->
+      <p id="noResults" class="fw-bold py-4" hidden>No products found</p>
+
+      <!--
+        Bootstrap grid:
+        row-cols-1  = 1 card per row on phones
+        row-cols-sm-2 = 2 per row from 576px
+        row-cols-md-3 = 3 per row from 768px (tablet)
+        row-cols-lg-4 = 4 per row from 992px (desktop)
+        g-4 = gap between cards
+        Each .col also has a category class (men / women / unisex) for the filter.
+      -->
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="productGrid">
 
         <!-- Product 1 -->
@@ -262,6 +281,9 @@
       <p class="text-center mb-0">&copy; 2026 Scents n Stories. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- TASK 3 script (plain JavaScript) -->
+  <script src="script.js"></script>
 
   <!-- Bootstrap JS: needed only for the hamburger menu to open/close.
        (The Task 1 filter does NOT use any JavaScript.) -->
