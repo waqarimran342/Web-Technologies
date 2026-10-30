@@ -132,3 +132,47 @@ body {
 #f-unisex:checked ~ .row .women {
   display: none;
 }
+
+
+/* ---------- TASK 2: product page grid with named areas ---------- */
+
+/* Phones (below BP): ONE column, three boxes stacked in this order */
+.product-layout {
+  display: grid;
+  gap: 2rem;
+  grid-template-areas:
+    "image"
+    "details"
+    "description";
+}
+
+/* give each box its area name */
+.p-image   { grid-area: image; }
+.p-details { grid-area: details; }
+.p-desc    { grid-area: description; }
+
+.p-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* From BP and wider: BP = 600 + N = 600 + 12 = 612px */
+@media (min-width: 612px) {
+  .product-layout {
+    grid-template-columns: 1fr 1fr;           /* two equal columns */
+    grid-template-areas:
+      "image details"
+      "description description";              /* description spans both columns */
+    align-items: start;                       /* boxes keep their own height (sticky needs this) */
+  }
+
+  .p-image img {
+    aspect-ratio: 3 / 4;                      /* taller image = more room for the box to stay visible */
+  }
+
+  .p-details {
+    position: sticky;
+    top: 82px;                                /* (N mod 40) + 70 = 12 + 70 = 82px */
+  }
+}
