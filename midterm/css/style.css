@@ -1,0 +1,77 @@
+/* ===== My custom CSS (Bootstrap does the grid and navbar) ===== */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+/* Top announcement bar */
+.announcement {
+  background-color: #c9a35c;   /* gold accent */
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+/* Hero banner: dark background with an image behind a dark overlay */
+.hero {
+  min-height: 350px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                    url("../images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: #222;      /* shows if hero.jpg is missing */
+}
+
+/* Product cards */
+.product-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Make every product image the same shape, so the grid looks even */
+.product-card img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* Product page */
+.product-main-img {
+  width: 100%;
+}
+
+.quantity-input {
+  max-width: 120px;
+}
+
+/* Footer links */
+.footer-link {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #c9a35c;
+}
+
+/* ===== Media queries (my own responsive rules) ===== */
+
+/* Phones: up to 575px */
+@media (max-width: 575px) {
+  .hero {
+    min-height: 260px;
+  }
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Tablets: 768px and above */
+@media (min-width: 768px) {
+  .hero {
+    min-height: 420px;
+  }
+}
