@@ -75,3 +75,60 @@ body {
     min-height: 420px;
   }
 }
+
+
+/* =====================================================
+   MIDTERM  (N = 12, BP = 612px, H = 84, K = 3)
+   ===================================================== */
+
+/* Accent colour: hsl(H, 70%, 45%) with H = 84 */
+:root {
+  --accent: hsl(84, 70%, 45%);
+}
+
+/* ---------- TASK 1: CSS-only category filter ---------- */
+
+/* centre the filter buttons */
+#products {
+  text-align: center;
+}
+
+/* Step 1: hide the real radio circles (the labels act as the buttons) */
+.filter-radio {
+  display: none;
+}
+
+/* Step 2: make each label look like a button */
+.filter-label {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  margin: 0 0.25rem 1.5rem;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Step 3: the selected button is filled with the accent colour */
+.filter-radio:checked + .filter-label {
+  background-color: var(--accent);
+  font-weight: bold;
+}
+
+/* Step 4: hide the cards that do not match.
+   "~ .row" means: the grid that comes after the checked radio.
+   display:none removes the card completely, so no gaps are left.
+   "All" has no rule, so with All checked every card stays visible. */
+#f-men:checked ~ .row .women,
+#f-men:checked ~ .row .unisex {
+  display: none;
+}
+
+#f-women:checked ~ .row .men,
+#f-women:checked ~ .row .unisex {
+  display: none;
+}
+
+#f-unisex:checked ~ .row .men,
+#f-unisex:checked ~ .row .women {
+  display: none;
+}
