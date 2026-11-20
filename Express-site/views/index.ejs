@@ -1,0 +1,82 @@
+<main>
+
+    <!-- ========== HERO BANNER ========== -->
+    <section class="hero text-center text-white d-flex align-items-center">
+      <div class="container">
+        <h1 class="display-5 fw-bold">Perfumes That Tell Your Story</h1>
+        <p class="lead">Long-lasting fragrances for every mood and every season.</p>
+        <a href="#products" class="btn btn-light btn-lg">Shop Now</a>
+      </div>
+    </section>
+
+    <!-- ========== PRODUCT GRID ========== -->
+    <section id="products" class="container py-5">
+      <h2 class="text-center mb-4">Best Sellers</h2>
+
+      <!-- TASK 1: CSS-only category filter -->
+      <input type="radio" name="category" id="f-all" value="all" class="filter-radio" checked>
+      <label for="f-all" class="filter-label">All</label>
+
+      <input type="radio" name="category" id="f-men" value="men" class="filter-radio">
+      <label for="f-men" class="filter-label">Men</label>
+
+      <input type="radio" name="category" id="f-women" value="women" class="filter-radio">
+      <label for="f-women" class="filter-label">Women</label>
+
+      <input type="radio" name="category" id="f-unisex" value="unisex" class="filter-radio">
+      <label for="f-unisex" class="filter-label">Unisex</label>
+
+      <!-- TASK 3: live search and sort button -->
+      <div class="tools">
+        <input type="search" id="searchBox" class="form-control" placeholder="Search products..." aria-label="Search products">
+        <button type="button" id="sortBtn" class="btn btn-outline-dark">Sort by price</button>
+      </div>
+
+      <p id="noResults" class="fw-bold py-4" hidden>No products found</p>
+
+      <!-- The loop prints one card for every product sent by server.js -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="productGrid">
+
+        <% products.forEach(function (p) { %>
+        <div class="col <%= p.category %>">
+          <div class="card h-100 product-card">
+            <a href="/product"><img src="/images/<%= p.image %>" class="card-img-top" alt="<%= p.name %>"></a>
+            <div class="card-body text-center">
+              <h5 class="card-title"><%= p.name %></h5>
+              <p class="card-text fw-bold">Rs. <%= p.price.toLocaleString("en-US") %></p>
+            </div>
+            <div class="card-footer bg-white border-0 pb-3">
+              <button class="btn btn-dark w-100">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+
+      </div>
+    </section>
+
+    <!-- ========== WHY CHOOSE US ========== -->
+    <section id="about" class="bg-light py-5">
+      <div class="container">
+        <h2 class="text-center mb-4">Why Choose Us</h2>
+        <div class="row text-center g-4">
+          <div class="col-12 col-md-4">
+            <h5>100% Original</h5>
+            <p>Authentic fragrances only.</p>
+          </div>
+          <div class="col-12 col-md-4">
+            <h5>Cash on Delivery</h5>
+            <p>Pay when your order arrives.</p>
+          </div>
+          <div class="col-12 col-md-4">
+            <h5>Delivery Across Pakistan</h5>
+            <p>Fast and reliable shipping.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- your JavaScript (search, sort, Premium label) -->
+  <script src="/script.js"></script>

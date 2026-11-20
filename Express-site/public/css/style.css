@@ -1,0 +1,198 @@
+/* ===== My custom CSS (Bootstrap does the grid and navbar) ===== */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+/* Top announcement bar */
+.announcement {
+  background-color: #c9a35c;   /* gold accent */
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+/* Hero banner: dark background with an image behind a dark overlay */
+.hero {
+  min-height: 350px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                    url("../images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: #222;      /* shows if hero.jpg is missing */
+}
+
+/* Product cards */
+.product-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Make every product image the same shape, so the grid looks even */
+.product-card img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* Product page */
+.product-main-img {
+  width: 100%;
+}
+
+.quantity-input {
+  max-width: 120px;
+}
+
+/* Footer links */
+.footer-link {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #c9a35c;
+}
+
+/* ===== Media queries (my own responsive rules) ===== */
+
+/* Phones: up to 575px */
+@media (max-width: 575px) {
+  .hero {
+    min-height: 260px;
+  }
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Tablets: 768px and above */
+@media (min-width: 768px) {
+  .hero {
+    min-height: 420px;
+  }
+}
+
+
+/* =====================================================
+   MIDTERM  (N = 12, BP = 612px, H = 84, K = 3)
+   ===================================================== */
+
+/* Accent colour: hsl(H, 70%, 45%) with H = 84 */
+:root {
+  --accent: hsl(84, 70%, 45%);
+}
+
+/* ---------- TASK 1: CSS-only category filter ---------- */
+
+/* centre the filter buttons */
+#products {
+  text-align: center;
+}
+
+/* Step 1: hide the real radio circles (the labels act as the buttons) */
+.filter-radio {
+  display: none;
+}
+
+/* Step 2: make each label look like a button */
+.filter-label {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  margin: 0 0.25rem 1.5rem;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Step 3: the selected button is filled with the accent colour */
+.filter-radio:checked + .filter-label {
+  background-color: var(--accent);
+  font-weight: bold;
+}
+
+/* Step 4: hide the cards that do not match.
+   "~ .row" means: the grid that comes after the checked radio.
+   display:none removes the card completely, so no gaps are left.
+   "All" has no rule, so with All checked every card stays visible. */
+#f-men:checked ~ .row .women,
+#f-men:checked ~ .row .unisex {
+  display: none;
+}
+
+#f-women:checked ~ .row .men,
+#f-women:checked ~ .row .unisex {
+  display: none;
+}
+
+#f-unisex:checked ~ .row .men,
+#f-unisex:checked ~ .row .women {
+  display: none;
+}
+
+
+/* ---------- TASK 3: search and sort controls ---------- */
+.tools {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tools .form-control {
+  flex: 1;
+}
+
+/* script.js adds this class to cards that do not match the search text */
+.search-hide {
+  display: none;
+}
+
+
+/* ---------- TASK 2: product page grid with named areas ---------- */
+
+/* Phones (below BP): ONE column, three boxes stacked in this order */
+.product-layout {
+  display: grid;
+  gap: 2rem;
+  grid-template-areas:
+    "image"
+    "details"
+    "description";
+}
+
+/* give each box its area name */
+.p-image   { grid-area: image; }
+.p-details { grid-area: details; }
+.p-desc    { grid-area: description; }
+
+.p-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* From BP and wider: BP = 600 + N = 600 + 12 = 612px */
+@media (min-width: 612px) {
+  .product-layout {
+    grid-template-columns: 1fr 1fr;           /* two equal columns */
+    grid-template-areas:
+      "image details"
+      "description description";              /* description spans both columns */
+  }
+
+  .p-image img {
+    aspect-ratio: 3 / 4;                      /* taller image = taller row = more room for the box to move */
+  }
+
+  /* .p-details is the grid column (as tall as the image row).
+     .details-box inside it is the box that sticks, so it can only move
+     inside that column and stops at the end of the image row,
+     instead of floating over the description. */
+  .details-box {
+    position: sticky;
+    top: 82px;                                /* (N mod 40) + 70 = 12 + 70 = 82px */
+  }
+}
