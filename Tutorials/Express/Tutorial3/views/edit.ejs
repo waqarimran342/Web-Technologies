@@ -1,0 +1,18 @@
+
+<section class="panel">
+  <h2>Edit Task</h2>
+
+  <form action="/tasks/<%= task.id %>/edit" method="POST" class="task-form">
+    <input
+      type="text"
+      name="title"
+      value="<%= task.title %>"
+      placeholder="Enter task title"
+      required
+    >
+
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <a href="/" class="back-link">Back to Home</a>
+</section>

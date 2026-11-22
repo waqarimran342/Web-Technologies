@@ -1,0 +1,54 @@
+
+<section class="panel">
+  <h2>Add a Task</h2>
+
+  <form action="/tasks" method="POST" class="task-form">
+    <input
+      type="text"
+      name="title"
+      placeholder="What do you need to do?"
+      required
+    >
+    <button type="submit">Add</button>
+  </form>
+</section>
+
+<section class="panel">
+  <h2>All Tasks (<%= tasks.length %>)</h2>
+
+  <% if (tasks.length === 0) { %>
+    <p class="empty-state">No tasks yet -- add one above.</p>
+  <% } else { %>
+
+    <ul class="task-list">
+      <% tasks.forEach(function (task) { %>
+
+        <li class="task-item <%= task.done ? 'done' : '' %>">
+
+          <!-- EJS escapes task titles to prevent HTML injection -->
+          <span class="task-title"><%= task.title %></span>
+
+          <div class="task-actions">
+
+            <form action="/tasks/<%= task.id %>/toggle" method="POST">
+              <button type="submit" class="toggle-btn">
+                <%= task.done ? "Undo" : "Done" %>
+              </button>
+            </form>
+
+            <form action="/tasks/<%= task.id %>/edit" method="GET">
+              <button type="submit" class="edit-btn">Edit</button>
+            </form>
+
+            <form action="/tasks/<%= task.id %>/delete" method="POST">
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
+
+          </div>
+        </li>
+
+      <% }); %>
+    </ul>
+
+  <% } %>
+</section>
